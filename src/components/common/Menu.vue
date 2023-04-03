@@ -7,11 +7,11 @@
                     <el-sub-menu :index="index + ''" :key="index" v-if="!item.hidden">
                         <!-- slot="title" 改成#title 并用template包裹 -->
                         <template #title>
-                            <i :class="item.iconClass"></i>
+                            <component class="icon" :is="item.iconClass"></component>
                             <span>{{ item.name }}</span>
                         </template>
                         <el-menu-item :index="child.path" v-for="(child, index2) in item.children" :key="index2">
-                            <i :class="child.iconClass"></i>
+                            <component class="icon" :is="child.iconClass"></component>
                             {{ child.name }}
                         </el-menu-item>
                     </el-sub-menu>
@@ -36,7 +36,8 @@ const activePath = router.currentRoute.value.path;
         .el-menu {
             height: 100%;
 
-            .fa {
+            .icon {
+                width: 18px;
                 margin-right: 10px;
             }
         }

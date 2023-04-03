@@ -33,7 +33,11 @@
       <el-table-column label="操作">
         <!-- slot-scope="scope" 改成#default=scope -->
         <template #default="scope">
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row.id)"></el-button>
+          <el-button type="danger" size="mini" @click="del(scope.row.id)">
+            <el-icon>
+              <Delete />
+            </el-icon>
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -46,7 +50,7 @@
 </template>
 
 <script>
-import { getStudentList, deleteStudent, findStudent } from '@/api/api';
+import { getStudentList, deleteStudent } from '@/api/api';
 export default {
   data() {
     return {
@@ -100,7 +104,7 @@ export default {
     },
     reset() {
       this.formInline = {},
-      this.getData(this.formInline);
+        this.getData(this.formInline);
     }
   }
 }
@@ -111,6 +115,7 @@ export default {
   .demo-form-inline {
     text-align: left;
   }
+
   .el-pagination {
     text-align: left;
     margin-top: 20px;

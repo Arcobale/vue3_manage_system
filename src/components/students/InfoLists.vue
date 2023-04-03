@@ -25,14 +25,22 @@
       <el-table-column prop="phone" label="联系方式">
       </el-table-column>
       <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button type="danger" size="mini" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row)"></el-button>
+        <template #default="scope">
+          <el-button type="danger" size="mini" @click="edit(scope.row)">
+            <el-icon>
+              <Edit />
+            </el-icon>
+          </el-button>
+          <el-button type="danger" size="mini" @click="del(scope.row)">
+            <el-icon>
+              <Delete />
+            </el-icon>
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <!-- 弹出对话框 -->
-    <el-dialog :title="state ? '添加学生信息' : '修改学生信息'" :visible.sync="dialogFormVisible" width="500px">
+    <el-dialog :title="state ? '添加学生信息' : '修改学生信息'" v-model="dialogFormVisible" width="500px">
       <el-form :model="form" :rules="rules" ref="form">
         <el-form-item label="姓名" :label-width="formLabelWidth" prop="name">
           <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -62,10 +70,12 @@
           <el-input v-model="form.phone" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="sure">确 定</el-button>
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="cancel">取 消</el-button>
+          <el-button type="primary" @click="sure">确 定</el-button>
+        </div>
+      </template>
     </el-dialog>
   </div>
 </template>
