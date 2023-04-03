@@ -31,6 +31,7 @@
       <el-table-column prop="phone" label="手机号">
       </el-table-column>
       <el-table-column label="操作">
+        <!-- slot-scope="scope" 改成#default=scope -->
         <template #default="scope">
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row.id)"></el-button>
         </template>

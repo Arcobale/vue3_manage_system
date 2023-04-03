@@ -1,6 +1,7 @@
 <template>
     <div class="login">
         <el-card class="box-card">
+            <!-- slot="header" 改成#header 并用template包裹 -->
             <template #header>
                 <div class="clearfix">
                     <span>通用后台管理系统</span>

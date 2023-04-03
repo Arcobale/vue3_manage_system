@@ -1,43 +1,33 @@
 <template>
     <div class="menu">
         <el-aside width="200px">
-            <el-menu 
-            router 
-            default-active="2" 
-            class="el-menu-vertical-demo" 
-            background-color="#2578b5" 
-            text-color="#fff"
-            active-text-color="#ffd04b">
+            <el-menu router :default-active="activePath" class="el-menu-vertical-demo" background-color="#2578b5"
+                text-color="#fff" active-text-color="#ffd04b">
                 <template v-for="(item, index) in menus">
-                    <el-submenu :index="index + ''" :key="index" v-if="!item.hidden">
-                        <template slot="title">
+                    <el-sub-menu :index="index + ''" :key="index" v-if="!item.hidden">
+                        <!-- slot="title" 改成#title 并用template包裹 -->
+                        <template #title>
                             <i :class="item.iconClass"></i>
                             <span>{{ item.name }}</span>
                         </template>
-                        <el-menu-item-group v-for="(child, index2) in item.children" :key="index2">
-                            <el-menu-item :index="child.path">
-                                <i :class="child.iconClass"></i>
-                                {{ child.name }}
-                            </el-menu-item>
-                        </el-menu-item-group>
-                    </el-submenu>
+                        <el-menu-item :index="child.path" v-for="(child, index2) in item.children" :key="index2">
+                            <i :class="child.iconClass"></i>
+                            {{ child.name }}
+                        </el-menu-item>
+                    </el-sub-menu>
                 </template>
             </el-menu>
         </el-aside>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            menus: [],
-        }
-    },
-    created() {
-        this.menus = [...this.$router.options.routes];
-    }
-}
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const menus = router.options.routes;
+const activePath = router.currentRoute.value.path;
+console.log(menus);
+console.log(activePath);
 </script>
 
 <style lang="less">
