@@ -26,8 +26,6 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const menus = router.options.routes;
 const activePath = router.currentRoute.value.path;
-console.log(menus);
-console.log(activePath);
 </script>
 
 <style lang="less">
